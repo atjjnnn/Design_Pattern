@@ -1,0 +1,40 @@
+@startuml name
+
+title 抽象クラス
+
+abstract class Display {
+    - {abstract} getColumns()
+    - {abstract} getRows()
+    - {abstract} getRowText()
+    + show()
+}
+
+class StringDisplay {
+    - string
+    + getColumns()
+    + getRows()
+    + getRowText()
+}
+
+abstract class Border {
+    # display
+}
+
+class SideBorder {
+    - borderChar
+
+    + getColumns()
+    + getRows()
+    + getRowText()
+}
+
+class FullBorder {
+
+}
+
+Display <|- Border
+Display <|-- StringDisplay
+Border <|-- SideBorder
+Border <|-- FullBorder
+
+@enduml
