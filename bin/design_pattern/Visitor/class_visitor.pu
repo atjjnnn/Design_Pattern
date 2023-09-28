@@ -1,0 +1,56 @@
+@startuml name
+
+title 抽象クラス
+
+interface Element {
+    + {abstract} accept()
+}
+
+abstract class Entry {
+    + {abstract} getName()
+    + {abstract} getSize()
+}
+
+class File {
+    - name
+    - size
+    + accept()
+    + getName()
+    + getSize()
+}
+
+class Directory {
+    - name
+    - size
+    + accept()
+    + getName()
+    + getSize()
+    + add()
+    + iterator()
+}
+
+class Main {
+
+}
+
+abstract class Visitor {
+    + {abstract} visit(File)
+    + {abstract} visit(Directory)
+}
+
+class ListVisitor {
+    - currentdir
+    + visit(File)
+    + visit(Directory)
+}
+
+
+Element <|.. Entry
+Entry <|-- File
+Entry <|-- Directory
+Directory <|-- Main
+File <|-- Main
+ListVisitor <|-- Main
+Visitor <|-- ListVisitor
+
+@enduml
